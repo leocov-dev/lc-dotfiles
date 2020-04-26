@@ -1,4 +1,7 @@
 #!/bin/zsh
 
 # setup solarized ls colors
-[[ ! -f $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-dark
+if [[ ! -f $HOME/.zsh-dircolors.config ]]; then
+    echo 'setup zsh-dircolors'
+    setupsolarized dircolors.ansi-dark
+fi
