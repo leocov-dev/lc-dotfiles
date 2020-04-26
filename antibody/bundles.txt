@@ -4,6 +4,11 @@ rupa/z
 romkatv/powerlevel10k
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
+chrissicool/zsh-256color
+zuxfoucault/colored-man-pages_mod
+zpm-zsh/colorize
+joel-porquet/zsh-dircolors-solarized
+
 
 # these should be at last!
 zdharma/fast-syntax-highlighting

@@ -1,4 +1,7 @@
 #!/bin/zsh
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # forces zsh to realize new commands
 zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
 

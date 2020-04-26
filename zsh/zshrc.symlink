@@ -20,7 +20,7 @@ done
 source <(antibody init)
 source ~/.zsh_plugins.sh
 
-# load everything but the path and completion files
+# load everything but the path, completion, install files
 for file in ${${${config_files:#*/path.zsh}:#*/completion.zsh}:#*/install.zsh}; do
   source "$file"
 done
