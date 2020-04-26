@@ -1,5 +1,5 @@
 #!/bin/zsh
 
-if [[ $(command -v setupdircolors &> /dev/null) ]]; then
+if [[ -x $(command -v setupdircolors &> /dev/null) ]]; then
     setupsoloarized dircolors.ansi-dark
 fi
