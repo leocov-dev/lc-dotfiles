@@ -1,5 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
-#PATH MANIP
+#PATH MANIPULATION
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$HOME/swift/swift-5.1.5-RELEASE-ubuntu18.04/usr/bin:$PATH"

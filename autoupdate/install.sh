@@ -1,4 +1,7 @@
-#!/bin/zsh
+#!/usr/bin/env bash
+
+set -e
+
 # setup auto-update
 #(
 #	crontab -l | grep -v "dot_update"

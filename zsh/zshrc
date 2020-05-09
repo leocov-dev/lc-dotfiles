@@ -1,0 +1,61 @@
+#!/usr/bin/env zsh
+
+export DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
+source "${DOTFILES}/.utils/functions.sh"
+
+# your default editor
+export EDITOR='micro'
+export VEDITOR='subl'
+
+# all of our zsh files
+typeset -U config_files
+config_files=($DOTFILES/*/*.zsh)
+
+log_debug "$(pp_array "config_files")"
+
+# load the path files
+log_debug "Load path.zsh files:"
+for file in ${(M)config_files:#*/path.zsh}; do
+    fileVar="LOAD_DOTFILES_$(basename $(dirname ${file:u}))"
+    log_debug "   <<< ${file}"
+    source "$file"
+done
+
+# load antibody plugins
+log_debug "Load antibody plugins..."
+source <(antibody init)
+
+if file_exists "$HOME/.zsh_plugins.sh"; then
+    log_debug "Sourcing zsh plugins..."
+    source "$HOME/.zsh_plugins.sh"
+fi
+
+# load everything but the path, completion, update files
+log_debug "Load misc .zsh files:"
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+    fileVar="LOAD_DOTFILES_$(basename $(dirname ${file:u}))"
+    log_debug "   <<< ${file}"
+    source "$file"
+done
+
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
+
+
+# load every completion after autocomplete loads
+log_debug "Load completion.zsh files:"
+for file in ${(M)config_files:#*/completion.zsh}; do
+    fileVar="LOAD_DOTFILES_$(basename $(dirname ${file:u}))"
+    log_debug "   <<< ${file}"
+    source "$file"
+done
+
+unset config_files
+
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+# shellcheck disable=SC1090
+[ -f "${HOME}/.localrc" ] && source "${HOME}/.localrc"

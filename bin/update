@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
+
+# shellcheck source=../.utils/functions.sh
+source "${DOTFILES}/.utils/functions.sh"
+
+# all of our zsh files
+install_files=("$DOTFILES"/*/install.sh)
+
+log_debug "$(pp_array "install_files")"
+
+# shellcheck disable=SC2068
+for file in ${install_files[@]}; do
+    task="$(basename "$(dirname "${file:u}")")"
+#    [[ -z ${"INSTALL_DOTFILES_$task":-true} ]] || continue
+
+    log_info "Installing: $task"
+    source "$file"
+done
+
+unset install_files

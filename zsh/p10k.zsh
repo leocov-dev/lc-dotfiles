@@ -123,7 +123,7 @@
   # icons that your text editor cannot render. Don't forget to put $ and use single quotes when
   # defining icons via Unicode codepoints.
   #
-  # Note: Many default icons cannot be displayed with system fonts. You'll need to install a
+  # Note: Many default icons cannot be displayed with system fonts. You'll need to update a
   # capable font to use them. See POWERLEVEL9K_MODE below.
   typeset -g POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
 
@@ -144,7 +144,7 @@
   #   Other                            | compatible
   #
   # If this looks overwhelming, either stick with a preinstalled system font and set
-  # POWERLEVEL9K_MODE=compatible, or install the recommended Powerlevel10k font from
+  # POWERLEVEL9K_MODE=compatible, or update the recommended Powerlevel10k font from
   # https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-for-powerlevel10k
   # and set POWERLEVEL9K_MODE=nerdfont-complete.
   typeset -g POWERLEVEL9K_MODE=nerdfont-complete

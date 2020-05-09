@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
+
+# shellcheck source=../.utils/tests.sh
+source "${DOTFILES}/.utils/tests.sh"

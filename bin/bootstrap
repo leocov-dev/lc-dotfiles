@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
+
+# shellcheck source=../.utils/functions.sh
+source "${DOTFILES}/.utils/functions.sh"
+
+# install / update everything
+"${DOTFILES}/bin/update"
+
+# TODO check for git user/email

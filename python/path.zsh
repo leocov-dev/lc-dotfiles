@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
 # PYTHON
 export PYENV_ROOT="$HOME/.pyenv"
