@@ -1,7 +1,5 @@
-wDir=$(dirname "${BASH_SOURCE[0]}")
-
 # shellcheck source=./colors.sh
-source "$wDir/colors.sh"
+source "$DOTFILES/.utils/colors.sh"
 
 a_test() {
     printf "${c_blue}TEST: $*${c_reset}"

@@ -3,6 +3,9 @@
 export DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
 source "${DOTFILES}/.utils/functions.sh"
 
+# load the .env file if found
+load_env_file
+
 # your default editor
 export EDITOR='micro'
 export VEDITOR='subl'
@@ -16,7 +19,10 @@ log_debug "$(pp_array "config_files")"
 # load the path files
 log_debug "Load path.zsh files:"
 for file in ${(M)config_files:#*/path.zsh}; do
-    fileVar="LOAD_DOTFILES_$(basename $(dirname ${file:u}))"
+    dirName=$(basename $(dirname "$file"))
+    envVar="DOTFILES_LOAD_PATH_${dirName:u}"
+    [[ "${(P)envVar:-true}" == true ]] || continue
+
     log_debug "   <<< ${file}"
     source "$file"
 done
@@ -31,9 +37,12 @@ if file_exists "$HOME/.zsh_plugins.sh"; then
 fi
 
 # load everything but the path, completion, update files
-log_debug "Load misc .zsh files:"
+log_debug "Load *.zsh files:"
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
-    fileVar="LOAD_DOTFILES_$(basename $(dirname ${file:u}))"
+    dirName=$(basename $(dirname "$file"))
+    envVar="DOTFILES_LOAD_REMAINDER_${dirName:u}"
+    [[ "${(P)envVar:-true}" == true ]] || continue
+
     log_debug "   <<< ${file}"
     source "$file"
 done
@@ -48,7 +57,10 @@ compinit -C
 # load every completion after autocomplete loads
 log_debug "Load completion.zsh files:"
 for file in ${(M)config_files:#*/completion.zsh}; do
-    fileVar="LOAD_DOTFILES_$(basename $(dirname ${file:u}))"
+    dirName=$(basename $(dirname "$file"))
+    envVar="DOTFILES_LOAD_COMPLETION_${dirName:u}"
+    [[ "${(P)envVar:-true}" == true ]] || continue
+
     log_debug "   <<< ${file}"
     source "$file"
 done

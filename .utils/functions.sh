@@ -1,7 +1,7 @@
-wDir=$(dirname "${BASH_SOURCE[0]}")
+#!/usr/bin/env bash
 
 # shellcheck source=./colors.sh
-source "$wDir/colors.sh"
+source "$DOTFILES/.utils/colors.sh"
 
 debug=1
 info=2
@@ -140,4 +140,48 @@ must_sudo() {
         log_error "Must sudo first..."
         exit 1
     fi
+}
+
+os_type () {
+    unameOut="$(uname -s)"
+    case "${unameOut}" in
+        Linux*)     machine=Linux;;
+        Darwin*)    machine=Mac;;
+        CYGWIN*)    machine=Cygwin;;
+        MINGW*)     machine=MinGw;;
+        *)          machine="UNKNOWN:${unameOut}"
+    esac
+    echo ${machine}
+}
+
+trim() {
+    local var="$*"
+    # remove leading whitespace characters
+    var="${var#"${var%%[![:space:]]*}"}"
+    # remove trailing whitespace characters
+    var="${var%"${var##*[![:space:]]}"}"
+    printf '%s' "$var"
+}
+
+load_env_file() {
+    local defaultLocation="$DOTFILES/.env"
+    local envFile=${1:-$defaultLocation}
+
+    if ! file_exists "$envFile"; then
+        log_debug "Failed to find: \"$envFile\""
+        return
+    fi
+
+    log_debug "Loading env file: \"$envFile\""
+
+    while IFS='=' read -r key temp || [ -n "$key" ]; do
+        local key=$(trim "$key")
+        local isComment='^[[:space:]]*#'
+        local isBlank='^[[:space:]]*$'
+        [[ $key =~ $isComment ]] && continue
+        [[ $key =~ $isBlank ]] && continue
+        local value=$(trim "$temp")
+        log_debug "ENV <<< $key='$value'"
+        eval export "$key='$value'";
+    done < "$envFile"
 }

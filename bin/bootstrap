@@ -7,6 +7,10 @@ DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
 # shellcheck source=../.utils/functions.sh
 source "${DOTFILES}/.utils/functions.sh"
 
+load_env_file
+
+force_sudo
+
 # install / update everything
 "${DOTFILES}/bin/update"
 

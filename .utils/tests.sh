@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-wDir=$(dirname "${BASH_SOURCE[0]}")
-
 # shellcheck source=./test_functions.sh
-source "$wDir/test_functions.sh"
+source "$DOTFILES/.utils/test_functions.sh"
 # shellcheck source=./functions.sh
-source "$wDir/functions.sh"
+source "$DOTFILES/.utils/functions.sh"
 
 echo "------------- TEST SUITE ---------------"
 echo
@@ -43,6 +41,7 @@ expected="Array: \$test_array
         [0] 1
         [1] 2
         [2] A B"
+# shellcheck disable=SC2034
 test_array=(1 2 "A B")
 result="$(pp_array "test_array")"
 if [[ "$result" == "$expected" ]]; then

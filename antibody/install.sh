@@ -13,6 +13,8 @@ if ! command_exists "antibody"; then
         "brew install antibody"
     cascade_command curl \
         "curl -sL https://git.io/antibody | sudo -n sh -s -- -b /usr/local/bin"
+else
+    log_debug "Already installed: antibody"
 fi
 
 antibody bundle < "$DOTFILES/antibody/bundles.txt" > "$HOME/.zsh_plugins.sh"
