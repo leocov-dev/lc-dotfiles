@@ -40,12 +40,14 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # dont ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
 
+setopt  AUTOCD
+
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 zle -N edit-command-line
 
 # search history with fzf if installed, default otherwise
-if test -d /usr/local/opt/fzf/shell; then
+if [[ -d /usr/local/opt/fzf/shell ]]; then
     # shellcheck disable=SC1091
     . /usr/local/opt/fzf/shell/key-bindings.zsh
 else

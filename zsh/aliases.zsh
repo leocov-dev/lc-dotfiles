@@ -5,9 +5,10 @@ source "${DOTFILES}/.utils/functions.sh"
 #alias reload!='exec "$SHELL" -l'
 alias reload!='source ~/.zshrc'
 alias reinstall!='$DOTFILES/bin/install'
-alias zshrc='$EDITOR ~/.zshrc'
+alias .zshrc='$EDITOR ~/.zshrc'
+alias .dotfiles='cd $DOTFILES'
 
-alias ..='cd ..'
+#alias ..='cd ..'
 alias cl="clear"
 
 alias ls='ls --color --classify'
@@ -30,3 +31,22 @@ gh-open() {
 }
 
 alias gh=gh-open
+
+workon_alias() {
+  local workonRoot="$1"
+
+  if [ -n "$workonRoot" ] && [ -d "$workonRoot" ]; then
+    # change directories
+    pushd "$workonRoot" > /dev/null || return;
+    for project in $(find . -maxdepth 1 -mindepth 1 -type d | sed 's/^.\///'); do
+        root=$(basename "$workonRoot")
+      alias $root-$project="cd $workonRoot/$project";
+    done
+    # return the previous directory
+    popd > /dev/null || return;
+  fi
+}
+
+workon_alias "$HOME/lc"
+workon_alias "$HOME/src"
+workon_alias "$HOME/repos"
