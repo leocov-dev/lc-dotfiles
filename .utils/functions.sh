@@ -156,8 +156,12 @@ do_all_install() {
     # shellcheck disable=SC2068
     for file in ${install_files[@]}; do
         task="$(basename "$(dirname "${file}")")"
+
         skipEnvVar="DOTFILES_INSTALL_${task^^}"
-        [[ "${!skipEnvVar:-true}" == true ]] || continue
+        if [[ "${!skipEnvVar:-true}" == true ]]; then
+            log_debug "Skipping install: $task"
+            continue
+        fi
 
         log_info "Installing: $task"
         # shellcheck disable=SC1090
