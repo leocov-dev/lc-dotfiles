@@ -1,53 +1,15 @@
 #!/usr/bin/env bash
 
-# shellcheck source=./colors.sh
-source "$DOTFILES/.utils/colors.sh"
+# shellcheck source=./fn_colors.sh
+source "$DOTFILES/.utils/fn_colors.sh"
+# shellcheck source=./fn_logging.sh
+source "$DOTFILES/.utils/fn_logging.sh"
+# shellcheck source=./fn_git.sh
+source "$DOTFILES/.utils/fn_git.sh"
 
-debug=1
-info=2
-warn=3
-error=4
 
-global_log_level=$info
-global_log_level=$debug # TODO: REMOVE  OVERRIDE
-
-log_levels=(
-    [debug]=$debug
-    [$debug]=debug
-    [info]=$info
-    [$info]=info
-    [warn]=$warn
-    [$warn]=warn
-    [error]=$error
-    [$error]=error
-)
-
-if [[ -n $DOTFILES_LOG_LEVEL ]]; then
-    global_log_level=${log_levels[${DOTFILES_LOG_LEVEL:l}]}
-fi
-
-log_debug() {
-    if [[ $global_log_level -le $debug ]]; then
-        echo -e "${c_grey}[DEBUG]${c_reset} $*"
-    fi
-}
-
-log_info() {
-    if [[ $global_log_level -le $info ]]; then
-        echo -e "${c_blue}[INFO ]${c_reset} $*"
-    fi
-}
-
-log_warn() {
-    if [[ $global_log_level -le $warn ]]; then
-        echo -e "${c_yellow}[WARN ]${c_reset} $*"
-    fi
-}
-
-log_error() {
-    if [[ $global_log_level -le $error ]]; then
-        echo -e "${c_red}[ERROR]${c_reset} $*"
-    fi
+prompt() {
+    echo -e "${c_purple}$1${c_reset}"
 }
 
 get_shell() {
@@ -184,4 +146,41 @@ load_env_file() {
         log_debug "ENV <<< $key='$value'"
         eval export "$key='$value'";
     done < "$envFile"
+}
+
+do_all_install() {
+    local install_files=("$DOTFILES"/*/install.sh)
+
+    log_debug "$(pp_array "install_files")"
+
+    # shellcheck disable=SC2068
+    for file in ${install_files[@]}; do
+        task="$(basename "$(dirname "${file}")")"
+        skipEnvVar="DOTFILES_INSTALL_${task^^}"
+        [[ "${!skipEnvVar:-true}" == true ]] || continue
+
+        log_info "Installing: $task"
+        # shellcheck disable=SC1090
+        source "$file"
+    done
+}
+
+inside_git_repo() {
+    git rev-parse --is-inside-work-tree &>/dev/null
+    return
+}
+
+self_update() {
+    if [[ -d "$DOTFILES" ]]; then
+        log_debug "Attempt self update..."
+        cd "$DOTFILES" || log_error "Failed to cd into $DOTFILES"
+        if inside_git_repo; then
+            log_info "Updating Dotfiles Repo..."
+            git checkout -q master
+            git remote update -p
+            git merge -q --ff-only master
+        else
+            log_warn "Tried to update but was not git repo..."
+        fi
+    fi
 }

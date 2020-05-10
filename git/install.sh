@@ -3,20 +3,14 @@
 # shellcheck source=./.utils/functions.sh
 source "$DOTFILES/.utils/functions.sh"
 
-git_config_contains() {
-    while IFS='=' read -r line || [[ -n "$line" ]]; do
-        if [[ "$line" == "$2" ]]; then
-            return 0
-        fi
-    done < <(git config --global --get-all "$1");
+git_setup_user
 
-    return 1
-}
+if ! git_config_is_set "alias.up"; then
+    git config --global alias.up '!git remote update -p; git merge --ff-only @{u}'
+fi
 
-if git_config_contains 'include.path' "$DOTFILES/git/gitconfig"; then
-    echo "Found some poop"
-else
-    echo "Found no poop"
+if ! git_config_contains 'include.path' "$DOTFILES/git/gitconfig"; then
+    git config --global --add include.path "$DOTFILES/git/gitconfig"
 fi
 
 # better diffs

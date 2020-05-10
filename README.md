@@ -3,15 +3,15 @@
 ## Install
 Clone this repo to `~/.dotfiles` or if set env var `DOTFILES`
 
-First time you should run `bin/bootstrap`
+Run `bin/bootstrap`
 
 ## Update
-You can always run `bin/update` after the first install
+You can always run `bin/bootstrap` again to get the latest.
 
 ## Settings
 Change execution through environment variables
 
-Create a `$DOTFILES/.env` file and add settings to it, one per line (lines starting with `#` are comments).
+Create a `~/.dotfiles.env` file and add settings to it, one per line (lines starting with `#` are comments).
 
 * `DOTFILES_INSTALL_<NAME>=<boolean (default=true)>`
     * Run the install.sh script for that tool
@@ -28,3 +28,6 @@ Create a `$DOTFILES/.env` file and add settings to it, one per line (lines start
 
 ## Development
 Run tests with `bin/tests`
+
+## Notes
+Inspired by: [caarlos0/dotfiles](https://github.com/caarlos0/dotfiles/)

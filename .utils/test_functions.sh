@@ -1,5 +1,7 @@
-# shellcheck source=./colors.sh
-source "$DOTFILES/.utils/colors.sh"
+#!/usr/bin/env bash
+
+# shellcheck source=./fn_colors.sh
+source "$DOTFILES/.utils/fn_colors.sh"
 
 a_test() {
     printf "${c_blue}TEST: $*${c_reset}"

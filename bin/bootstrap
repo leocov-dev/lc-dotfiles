@@ -7,11 +7,7 @@ DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
 # shellcheck source=../.utils/functions.sh
 source "${DOTFILES}/.utils/functions.sh"
 
+self_update
 load_env_file
-
 force_sudo
-
-# install / update everything
-"${DOTFILES}/bin/update"
-
-# TODO check for git user/email
+do_all_install
