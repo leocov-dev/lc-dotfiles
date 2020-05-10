@@ -47,3 +47,7 @@ log_error() {
     echo -e "${c_red}[ERROR]${c_reset} $*"
 }
 
+log_fatal() {
+    echo -e "${c_red}[FATAL]${c_reset} $*"
+    exit 1
+}

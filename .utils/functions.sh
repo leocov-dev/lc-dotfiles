@@ -9,7 +9,7 @@ source "$DOTFILES/.utils/fn_git.sh"
 
 
 prompt() {
-    echo -e "${c_purple}$1${c_reset}"
+    printf "${c_purple}%s${c_reset}: " "$1"
 }
 
 get_shell() {
@@ -173,7 +173,7 @@ inside_git_repo() {
 self_update() {
     if [[ -d "$DOTFILES" ]]; then
         log_debug "Attempt self update..."
-        cd "$DOTFILES" || log_error "Failed to cd into $DOTFILES"
+        pushd "$DOTFILES" > /dev/null || log_fatal "Failed to cd into $DOTFILES"
         if git_is_behind; then
             if inside_git_repo; then
                 log_info "Updating Dotfiles Repo..."
@@ -186,5 +186,25 @@ self_update() {
         else
             log_debug "Already up to date..."
         fi
+        popd > /dev/null || log_fatal "Failed to popd"
+    fi
+}
+
+prompt_for_update() {
+    if [[ -d "$DOTFILES" ]]; then
+        pushd "$DOTFILES" > /dev/null || log_fatal "Failed to cd into $DOTFILES"
+        if git_is_behind; then
+            echo -e "${c_purple}Dotfiles has an update available!${c_reset}"
+            prompt "Update now? (y/n)"
+            read -r response
+            if [[ $response == "y" ]]; then
+                log_debug "Doing update now..."
+                self_update
+                echo -e "${c_purple}Restart your shell to activate new features!${c_reset}"
+            else
+                log_debug "Maybe later"
+            fi
+        fi
+        popd > /dev/null || log_fatal "Failed to popd"
     fi
 }

@@ -31,9 +31,13 @@ git_setup_user() {
 }
 
 git_is_behind() {
-    me=$(git rev-parse "master@{upstream}")
+    # shellcheck disable=SC2034
+    local me=$(git rev-parse "master@{upstream}")
     # shellcheck disable=SC2207
-    master=($(git ls-remote origin -h "refs/heads/master"))
+    local parse=($(git ls-remote origin -h "refs/heads/master"))
+    local master=${parse[1]}
+
+    log_debug "$me ? $master"
 
     # shellcheck disable=SC2128
     [[ $me != "$master" ]]

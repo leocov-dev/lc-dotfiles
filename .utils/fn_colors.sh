@@ -17,4 +17,4 @@ c_l_purple='\033[1;35m'
 c_l_cyan='\033[1;36m'
 c_l_white='\033[1;37m'
 
-c_reset='\033[0m' # No Color
+c_reset=$(tput sgr0)
