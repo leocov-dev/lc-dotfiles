@@ -16,7 +16,7 @@ echo -e "${c_purple}
 
 Bootstrapping . . .${c_reset}"
 
-#self_update
-#load_env_file
-#force_sudo
-#do_all_install
+self_update
+load_env_file
+force_sudo
+do_all_install
