@@ -2,13 +2,12 @@
 
 source "${DOTFILES}/.utils/functions.sh"
 
-#alias reload!='exec "$SHELL" -l'
+# alias reload!='exec "$SHELL" -l'
 alias reload!='source ~/.zshrc'
 alias reinstall!='$DOTFILES/bin/install'
 alias .zshrc='$EDITOR ~/.zshrc'
 alias .dotfiles='cd $DOTFILES'
 
-#alias ..='cd ..'
 alias cl="clear"
 
 alias ls='ls --color --classify'
@@ -47,6 +46,5 @@ workon_alias() {
   fi
 }
 
-workon_alias "$HOME/lc"
 workon_alias "$HOME/src"
 workon_alias "$HOME/repos"
