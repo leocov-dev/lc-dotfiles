@@ -5,7 +5,7 @@ set -e
 # shellcheck source=../.utils/functions.sh
 source "${DOTFILES}/.utils/functions.sh"
 
-if [[ -L "${HOME}/.ssh/config" ]]; then
+if file_exists "${HOME}/.ssh/config"; then
     # file is a symlink
     realFilePath=$(realpath "${HOME}/.ssh/config")
     if [[ "${DOTFILES}/ssh/config" != "$realFilePath" ]]; then
@@ -13,6 +13,8 @@ if [[ -L "${HOME}/.ssh/config" ]]; then
         mv "${HOME}/.ssh/config" "${HOME}/.ssh/config.local"
         ln -s "${DOTFILES}/ssh/config" "${HOME}/.ssh/config"
     fi
+else
+    ln -s "${DOTFILES}/ssh/config" "${HOME}/.ssh/config"
 fi
 
 touch "${HOME}/.ssh/config.local"

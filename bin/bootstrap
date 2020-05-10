@@ -7,7 +7,16 @@ DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
 # shellcheck source=../.utils/functions.sh
 source "${DOTFILES}/.utils/functions.sh"
 
-self_update
-load_env_file
-force_sudo
-do_all_install
+echo -e "${c_purple}
+ _____     ______     ______   ______   __     __         ______     ______
+/\  __-.  /\  __ \   /\__  _\ /\  ___\ /\ \   /\ \       /\  ___\   /\  ___\\
+\ \ \/\ \ \ \ \/\ \  \/_/\ \/ \ \  __\ \ \ \  \ \ \____  \ \  __\   \ \___  \\
+ \ \____-  \ \_____\    \ \_\  \ \_\    \ \_\  \ \_____\  \ \_____\  \/\_____\\
+  \/____/   \/_____/     \/_/   \/_/     \/_/   \/_____/   \/_____/   \/_____/
+
+Bootstrapping . . .${c_reset}"
+
+#self_update
+#load_env_file
+#force_sudo
+#do_all_install
