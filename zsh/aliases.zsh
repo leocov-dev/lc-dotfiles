@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+# shellcheck source=../.utils/functions
 source "${DOTFILES}/.utils/functions.sh"
 
 # alias reload!='exec "$SHELL" -l'
 alias reload!='source ~/.zshrc'
-alias reinstall!='$DOTFILES/bin/install'
+alias bootstrap!='$DOTFILES/bin/bootstrap'
 alias .zshrc='$EDITOR ~/.zshrc'
 alias .dotfiles='cd $DOTFILES'
 
@@ -19,6 +20,8 @@ alias free="free -mt"
 
 if [[ ! $(os_type) == "darwin" ]]; then
     alias open="xdg-open 2>/dev/null"
+else
+    alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 fi
 
 gh-open() {

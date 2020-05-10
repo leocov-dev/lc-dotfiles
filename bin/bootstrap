@@ -14,7 +14,8 @@ echo -e "${c_purple}
  \ \____-  \ \_____\    \ \_\  \ \_\    \ \_\  \ \_____\  \ \_____\  \/\_____\\
   \/____/   \/_____/     \/_/   \/_/     \/_/   \/_____/   \/_____/   \/_____/
 
-Bootstrapping . . .${c_reset}"
+Bootstrapping . . .${c_reset}
+"
 
 self_update
 load_env_file

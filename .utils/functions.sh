@@ -182,7 +182,7 @@ self_update() {
             if inside_git_repo; then
                 log_info "Updating Dotfiles Repo..."
                 git checkout -q master
-                git remote update -p
+                git remote update -p > /dev/null
                 git merge -q --ff-only master
             else
                 log_warn "Tried to update but was not git repo..."

@@ -1,12 +1,16 @@
 # Dotfile Management And Bootstrap
 
 ## Install
+Requires `zsh` shell
+
 Clone this repo to `~/.dotfiles` or if set env var `DOTFILES`
+`git clone git@github.com:leocov-dev/dotfiles.git ~/.dotfiles`
 
 Run `bin/bootstrap`
 
 ## Update
-You can always run `bin/bootstrap` again to get the latest.
+You can always run `bootstrap!` or `bin/bootstrap` again to get the latest.
+Reload your shell with `reload!`
 
 ## Settings
 Change execution through environment variables

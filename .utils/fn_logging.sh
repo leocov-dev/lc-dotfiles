@@ -27,27 +27,27 @@ fi
 
 log_debug() {
     if [[ $global_log_level -le $debug ]]; then
-        echo -e "${c_grey}[DEBUG]${c_reset} $*"
+        echo -e "${c_grey}[DEBG]${c_reset} $*"
     fi
 }
 
 log_info() {
     if [[ $global_log_level -le $info ]]; then
-        echo -e "${c_blue}[INFO ]${c_reset} $*"
+        echo -e "${c_blue}[INFO]${c_reset} $*"
     fi
 }
 
 log_warn() {
     if [[ $global_log_level -le $warn ]]; then
-        echo -e "${c_yellow}[WARN ]${c_reset} $*"
+        echo -e "${c_yellow}[WARN]${c_reset} $*"
     fi
 }
 
 log_error() {
-    echo -e "${c_red}[ERROR]${c_reset} $*"
+    echo -e "${c_red}[ERRO]${c_reset} $*"
 }
 
 log_fatal() {
-    echo -e "${c_red}[FATAL]${c_reset} $*"
+    echo -e "${c_red}[FATL]${c_reset} $*"
     exit 1
 }

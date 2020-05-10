@@ -13,7 +13,7 @@ if ! command_exists "zsh"; then
     cascade_command apt \
         "sudo -n apt install zsh"
     if cascade_end; then
-        log_error "Failed to install: zsh"
+        log_fatal "Failed to install: zsh"
         exit 1
     fi
 else
@@ -26,6 +26,8 @@ if ! file_exists "${HOME}/.zshrc"; then
 
     cat <<\EOT > "${HOME}/.zshrc"
 #!/usr/bin/env zsh
+
+export DOTFILES_LOG_LEVEL=info
 
 ## LOAD DOTFILE CUSTOMIZATIONS
 if [[ -f "$HOME/.dotfiles/zsh/zshrc" ]]; then
