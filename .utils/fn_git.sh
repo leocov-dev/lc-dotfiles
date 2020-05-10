@@ -29,3 +29,13 @@ git_setup_user() {
         git config --global user.email "$user_email"
     fi
 }
+
+git_is_behind() {
+    me=$(git rev-parse "master@{upstream}")
+    # shellcheck disable=SC2207
+    master=($(git ls-remote origin -h "refs/heads/master"))
+
+    # shellcheck disable=SC2128
+    [[ $me != "$master" ]]
+    return
+}

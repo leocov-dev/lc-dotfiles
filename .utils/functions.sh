@@ -126,7 +126,7 @@ trim() {
 }
 
 load_env_file() {
-    local defaultLocation="$DOTFILES/.env"
+    local defaultLocation="$HOME/.dotfiles.env"
     local envFile=${1:-$defaultLocation}
 
     if ! file_exists "$envFile"; then
@@ -174,13 +174,17 @@ self_update() {
     if [[ -d "$DOTFILES" ]]; then
         log_debug "Attempt self update..."
         cd "$DOTFILES" || log_error "Failed to cd into $DOTFILES"
-        if inside_git_repo; then
-            log_info "Updating Dotfiles Repo..."
-            git checkout -q master
-            git remote update -p
-            git merge -q --ff-only master
+        if git_is_behind; then
+            if inside_git_repo; then
+                log_info "Updating Dotfiles Repo..."
+                git checkout -q master
+                git remote update -p
+                git merge -q --ff-only master
+            else
+                log_warn "Tried to update but was not git repo..."
+            fi
         else
-            log_warn "Tried to update but was not git repo..."
+            log_debug "Already up to date..."
         fi
     fi
 }

@@ -9,7 +9,6 @@ warn=3
 error=4
 
 global_log_level=$info
-global_log_level=$debug # TODO: REMOVE  OVERRIDE
 
 log_levels=(
     [debug]=$debug
@@ -45,9 +44,6 @@ log_warn() {
 }
 
 log_error() {
-    if [[ $global_log_level -le $error ]]; then
-        echo -e "${c_red}[ERROR]${c_reset} $*"
-        exit 1
-    fi
+    echo -e "${c_red}[ERROR]${c_reset} $*"
 }
 
