@@ -12,7 +12,7 @@ alias .dotfiles='cd $DOTFILES'
 alias cl="clear"
 
 alias ls="grc -es --colour=auto ls"
-alias ll="ls -l --human-readable --almost-all"
+alias ll="ls -lhA"
 
 alias df="df -Tha --total"
 alias du="du -ach | sort -h"
