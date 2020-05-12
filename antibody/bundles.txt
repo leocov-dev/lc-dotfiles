@@ -7,7 +7,7 @@ zsh-users/zsh-autosuggestions
 chrissicool/zsh-256color
 zuxfoucault/colored-man-pages_mod
 zpm-zsh/colorize
-joel-porquet/zsh-dircolors-solarized
+# joel-porquet/zsh-dircolors-solarized
 
 
 # these should be at last!
