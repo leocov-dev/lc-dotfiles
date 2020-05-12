@@ -2,6 +2,8 @@
 
 # shellcheck source=./fn_logging.sh
 source "$DOTFILES/.utils/fn_logging.sh"
+# shellcheck source=./fn_utils.sh
+source "$DOTFILES/.utils/fn_utils.sh"
 
 git_config_contains() {
     while IFS='=' read -r line || [[ -n "$line" ]]; do
@@ -34,8 +36,8 @@ git_is_behind() {
     # shellcheck disable=SC2034
     local me=$(git rev-parse "master@{upstream}")
     # shellcheck disable=SC2207
-    local parse=($(git ls-remote origin -h "refs/heads/master"))
-    local master=${parse[1]}
+    local parseMe=$(git ls-remote origin -h "refs/heads/master")
+    local master=$(trim "${parseMe%"refs/heads/master"}")
 
     log_debug "$me ? $master"
 
