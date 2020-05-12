@@ -13,8 +13,9 @@ prompt() {
 }
 
 get_shell() {
+    result=$(ps -p $$ -o "comm=")
     # shellcheck disable=SC2005
-    echo "$(ps -p $$ --no-headers -o comm=)"
+    echo "${result#"-"}"
 }
 
 pp_array() {
