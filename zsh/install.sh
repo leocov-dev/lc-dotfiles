@@ -29,12 +29,12 @@ if ! file_exists "${HOME}/.zshrc"; then
 
 export DOTFILES_LOG_LEVEL=info
 
-## LOAD DOTFILE CUSTOMIZATIONS
+# LOAD DOTFILE CUSTOMIZATIONS
 if [[ -f "$HOME/.dotfiles/zsh/zshrc" ]]; then
     source "$HOME/.dotfiles/zsh/zshrc"
 fi
 
-## ADD ADDITIONAL CUSTOMIZATIONS AFTER THIS LINE
+# ADD ADDITIONAL CUSTOMIZATIONS AFTER THIS LINE
 
 EOT
 fi
