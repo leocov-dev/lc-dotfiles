@@ -158,8 +158,8 @@ do_all_install() {
     for file in ${install_files[@]}; do
         task="$(basename "$(dirname "${file}")")"
 
-        skipEnvVar="DOTFILES_INSTALL_${task^^}"
-        if [[ "${!skipEnvVar:-true}" == true ]]; then
+        envVar="DOTFILES_INSTALL_${task^^}"
+        if [[ "${!envVar:-true}" == false ]]; then
             log_debug "Skipping install: $task"
             continue
         fi
