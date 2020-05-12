@@ -67,9 +67,7 @@ done
 
 unset config_files
 
-if [[ ${DOTFILES_PROMPT_FOR_UPDATE:-true} == "true" ]]; then
-    prompt_for_update
-fi
+# prompt_for_update  # TODO, is a bit slow maybe async?
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.

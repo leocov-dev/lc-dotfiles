@@ -196,7 +196,7 @@ self_update() {
 }
 
 prompt_for_update() {
-    if [[ -d "$DOTFILES" ]]; then
+    if [[ -d "$DOTFILES" &&  ${DOTFILES_PROMPT_FOR_UPDATE:-"false"} == "true" ]]; then
         pushd "$DOTFILES" > /dev/null || log_fatal "Failed to cd into $DOTFILES"
         if git_is_behind; then
             echo -e "${c_purple}Dotfiles has an update available!${c_reset}"
