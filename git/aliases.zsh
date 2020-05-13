@@ -16,10 +16,10 @@ fi
 #alias gco='git checkout'
 #alias gb='git branch -v'
 #alias ga='git add'
-#alias gaa='git add -A'
-#alias gcm='git commit -s -m'
+alias gaa='git add -A'
+alias gcm='git commit -m'
 #alias gcam='git commit -s -a -m'
-#alias gs='git status -sb'
+alias gs='git status -sb'
 #alias gpr='gp && git pr'
 #alias glnext='git log --oneline $(git describe --tags --abbrev=0 @^)..@'
 #
