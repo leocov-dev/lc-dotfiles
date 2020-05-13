@@ -17,5 +17,11 @@ else
     log_debug "Already installed: antibody"
 fi
 
+antibodyHome="$(antibody home)"
+
+if [[ -d "$antibodyHome" ]]; then
+    rm -rf "$antibodyHome"
+fi
+
 antibody bundle < "$DOTFILES/antibody/bundles.txt" > "$HOME/.zsh_plugins.sh"
 antibody update > /dev/null
