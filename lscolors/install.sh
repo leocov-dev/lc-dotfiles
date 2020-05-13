@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# shellcheck source=../.utils/functions.sh
+source "${DOTFILES}/.utils/functions.sh"
+
+
 if [[ ! -d "/tmp/LS_COLORS/" ]]; then
     mkdir /tmp/LS_COLORS
 fi

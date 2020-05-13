@@ -8,10 +8,11 @@ alias reload!='source ~/.zshrc'
 alias bootstrap!='$DOTFILES/bin/bootstrap'
 alias .zshrc='$EDITOR ~/.zshrc'
 alias .dotfiles='cd $DOTFILES'
+alias .dotfiles.env='$EDITOR $DOTFILES'
 
 alias cl="clear"
 
-alias ls="grc -es --colour=auto ls -Fp --color=always"
+alias ls="ls -Fp --color=auto"
 alias ll="ls -lhA"
 
 alias df="df -Tha --total"
