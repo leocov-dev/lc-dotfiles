@@ -13,6 +13,9 @@ if ! command_exists "antibody"; then
         "brew install antibody"
     cascade_command curl \
         "curl -sL https://git.io/antibody | sudo -n sh -s -- -b /usr/local/bin"
+    if cascade_end; then
+        log_error "Failed to install: micro"
+    fi
 else
     log_debug "Already installed: antibody"
 fi

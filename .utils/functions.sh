@@ -8,6 +8,8 @@ source "$DOTFILES/.utils/fn_logging.sh"
 source "$DOTFILES/.utils/fn_git.sh"
 # shellcheck source=./fn_utils.sh
 source "$DOTFILES/.utils/fn_utils.sh"
+# shellcheck source=./fn_fonts.sh
+source "$DOTFILES/.utils/fn_fonts.sh"
 
 
 
