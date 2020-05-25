@@ -2,3 +2,8 @@
 
 .env
 log.txt
+
+# Micro text editor configuration
+micro/config/
+!micro/config/settings.json
+!micro/config/bindings.json

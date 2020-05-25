@@ -45,3 +45,21 @@ git_is_behind() {
     [[ $me != "$master" ]]
     return
 }
+
+git_pull() {
+    if [[ -d "$1" ]]; then
+        pushd "$1"  > /dev/null || log_fatal "Failed to cd into $1"
+        if git_is_behind; then
+            git checkout -q master
+            git remote update -p > /dev/null
+            if ! git pull -q --ff-only; then
+                log_warn "Failed to merge, you might have local changes"
+            fi
+        else
+            log_debug 'Git was not behind...'
+        fi
+        popd > /dev/null || log_error "Failed to restore directory"
+    else
+        log_error "Failed to find directory '$1'"
+    fi
+}

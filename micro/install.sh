@@ -17,3 +17,13 @@ if ! command_exists "micro"; then
 else
     log_debug "Already installed: micro"
 fi
+
+
+install_update_plugin() {
+    if ! micro -plugin update $1; then
+        micro -plugin install $1
+    fi
+}
+
+install_update_plugin filemanager
+install_update_plugin manipulator
