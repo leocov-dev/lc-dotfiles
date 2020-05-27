@@ -7,7 +7,6 @@ if ! command_exists alacritty; then
         "brew cask install alacritty"
     cascade_command apt-get \
         "sudo -n add-apt-repository ppa:mmstick76/alacritty" \
-        "sudo -n apt-get update" \
         "sudo -n apt-get -y install alacritty"
     if cascade_end; then
         log_error "Failed to install: alacritty"

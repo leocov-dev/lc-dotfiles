@@ -91,6 +91,16 @@ load_env_file() {
     done < "$envFile"
 }
 
+update_system() {
+    cascade_command brew \
+        "brew update"
+    cascade_command apt-get \
+        "sudo -n apt-get update"
+    if cascade_end; then
+        log_error "Failed to update the system package manager"
+    fi
+}
+
 do_all_install() {
     local install_files=("$DOTFILES"/*/install.sh)
 
