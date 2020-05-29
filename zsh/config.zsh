@@ -12,13 +12,11 @@ if [[ -f $lsColorsFile ]]; then
     source "$lsColorsFile"
 fi
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-autoload -U edit-command-line
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
-SAVEHIST=10000
+SAVEHIST=$HISTSIZE
 
 # don't nice background tasks
 setopt NO_BG_NICE
@@ -31,7 +29,10 @@ setopt LOCAL_TRAPS
 # add timestamps to history
 setopt EXTENDED_HISTORY
 setopt PROMPT_SUBST
-setopt CORRECT
+setopt CORRECT_ALL
+setopt AUTO_LIST
+setopt AUTO_MENU
+setopt ALWAYS_TO_END
 setopt COMPLETE_IN_WORD
 # adds history
 setopt APPEND_HISTORY
@@ -50,14 +51,15 @@ setopt RM_STAR_SILENT
 
 setopt  AUTOCD
 
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+autoload -U edit-command-line
+
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 zle -N edit-command-line
 
-# search history with fzf if installed, default otherwise
-if [[ -d /usr/local/opt/fzf/shell ]]; then
-    # shellcheck disable=SC1091
-    . /usr/local/opt/fzf/shell/key-bindings.zsh
-else
-    bindkey '^R' history-incremental-search-backward
-fi
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down

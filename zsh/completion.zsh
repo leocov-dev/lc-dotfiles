@@ -13,3 +13,6 @@ zstyle ':completion:*' rehash true
 
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
+
+ # group results by category
+zstyle ':completion:*' group-name ''

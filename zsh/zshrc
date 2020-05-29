@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 export DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
+# shellcheck source=../.utils/functions.sh
 source "${DOTFILES}/.utils/functions.sh"
 
 # load the .env file if found
@@ -11,61 +12,71 @@ export EDITOR='micro'
 export VEDITOR='subl'
 
 # all of our zsh files
-typeset -U config_files
-config_files=($DOTFILES/*/*.zsh)
+typeset -U zsh_files
+zsh_files=("$DOTFILES"/*/*.zsh)
 
-log_debug "$(pp_array "config_files")"
+log_debug "$(pp_array "zsh_files")"
 
 # load the path files
 log_debug "Load path.zsh files:"
-for file in ${(M)config_files:#*/path.zsh}; do
-    dirName=$(basename $(dirname "$file"))
-    envVar="DOTFILES_LOAD_PATH_${dirName:u}"
-    [[ "${(P)envVar:-true}" == true ]] || continue
+# shellcheck disable=SC2154
+for file in ${(M)zsh_files:#*/path.zsh}; do
+    dirName=$(basename "$(dirname "$file")")
+    loadPath="DOTFILES_LOAD_PATH_${dirName:u}"
+    [[ ${(P)loadPath:-true} == true ]] || continue
 
     log_debug "   <<< ${file}"
+    # shellcheck disable=SC1090
     source "$file"
 done
 
 # load antibody plugins
 log_debug "Load antibody plugins..."
+# shellcheck disable=SC1090
 source <(antibody init)
 
 if file_exists "$HOME/.zsh_plugins.sh"; then
     log_debug "Sourcing zsh plugins..."
+    # shellcheck disable=SC1090
     source "$HOME/.zsh_plugins.sh"
 fi
 
 # load everything but the path, completion, update files
 log_debug "Load *.zsh files:"
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
-    dirName=$(basename $(dirname "$file"))
-    envVar="DOTFILES_LOAD_REMAINDER_${dirName:u}"
-    [[ "${(P)envVar:-true}" == true ]] || continue
+for file in ${${zsh_files:#*/path.zsh}:#*/completion.zsh}; do
+    dirName=$(basename "$(dirname "$file")")
+    loadRemainder="DOTFILES_LOAD_REMAINDER_${dirName:u}"
+    [[ ${(P)loadRemainder:-true} == true ]] || continue
 
     log_debug "   <<< ${file}"
+    # shellcheck disable=SC1090
     source "$file"
 done
 
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-    compinit
-done
-compinit -C
+typeset -i updatedAt=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ "$(date +'%j')" != "$updatedAt" ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
 
+zmodload -i zsh/complist
 
 # load every completion after autocomplete loads
 log_debug "Load completion.zsh files:"
-for file in ${(M)config_files:#*/completion.zsh}; do
-    dirName=$(basename $(dirname "$file"))
-    envVar="DOTFILES_LOAD_COMPLETION_${dirName:u}"
-    [[ "${(P)envVar:-true}" == true ]] || continue
+# shellcheck disable=SC2154
+for file in ${(M)zsh_files:#*/completion.zsh}; do
+    dirName=$(basename "$(dirname "$file")")
+    loadCompletion="DOTFILES_LOAD_COMPLETION_${dirName:u}"
+    [[ ${(P)loadCompletion:-true} == true ]] || continue
 
     log_debug "   <<< ${file}"
+    # shellcheck disable=SC1090
     source "$file"
 done
 
-unset config_files
+unset zsh_files
 
 # prompt_for_update  # TODO, is a bit slow maybe async?
 
