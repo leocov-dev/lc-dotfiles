@@ -3,6 +3,20 @@
 # shellcheck source=./.utils/functions.sh
 source "$DOTFILES/.utils/functions.sh"
 
+must_sudo
+
+if ! command_exists "git"; then
+    cascade_command brew \
+        "brew install git"
+    cascade_command apt-get \
+        "sudo -n apt-get install git-all"
+    if cascade_end; then
+        log_error "Failed to install: git"
+    fi
+else
+    log_debug "Already installed: git"
+fi
+
 git_setup_user
 
 if ! git_config_is_set "alias.up"; then

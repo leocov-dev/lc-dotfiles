@@ -9,7 +9,7 @@ load_env_file
 
 # your default editor
 export EDITOR='micro'
-export VEDITOR='subl'
+export VEDITOR='edit'
 
 # all of our zsh files
 typeset -U zsh_files

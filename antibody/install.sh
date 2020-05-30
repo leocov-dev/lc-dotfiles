@@ -12,9 +12,9 @@ if ! command_exists "antibody"; then
         "brew tap | grep -q 'getantibody/tap' || brew tap getantibody/tap" \
         "brew install antibody"
     cascade_command curl \
-        "curl -sL https://git.io/antibody | sudo -n sh -s -- -b /usr/local/bin"
+        "curl -sfL git.io/antibody | sudo -n sh -s - -b /usr/local/bin"
     if cascade_end; then
-        log_error "Failed to install: micro"
+        log_error "Failed to install: antibody"
     fi
 else
     log_debug "Already installed: antibody"

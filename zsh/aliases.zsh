@@ -21,8 +21,9 @@ alias free="free -mt"
 
 if [[ ! $(os_type) == "darwin" ]]; then
     alias open="xdg-open 2>/dev/null"
+    alias edit="atom"
 else
-    alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+    alias edit="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 fi
 
 gh-open() {
