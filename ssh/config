@@ -5,4 +5,3 @@ Host *
   AddKeysToAgent yes
   UseKeychain yes
 
-Include ~/.ssh/config.local
