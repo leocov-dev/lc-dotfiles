@@ -8,8 +8,8 @@ if [[ -d "$GOENV_ROOT" ]]; then
 
     export PATH="$GOENV_ROOT/bin:$PATH"
 
-    GOENV_VERSION=$(goenv versions --bare | tail -n1)
-    export GOENV_VERSION
+#    GOENV_VERSION=$(goenv versions --bare | tail -n1)
+#    export GOENV_VERSION
 
     eval "$(goenv init -)"
 
