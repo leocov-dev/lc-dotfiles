@@ -4,6 +4,8 @@ if command_exists hub; then
     alias git='hub'
 fi
 
+alias git-summary-src='git-summary -q ~/src'
+alias git-summary-repos='git-summary -q ~/repos'
 
 #alias gl='git pull --prune'
 #alias glg="git log --graph --decorate --oneline --abbrev-commit"

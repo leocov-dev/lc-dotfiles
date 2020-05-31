@@ -43,3 +43,17 @@ if command_exists diff-so-fancy; then
     git config --global color.diff.new "green bold"
     git config --global color.diff.whitespace "red reverse"
 fi
+
+if ! command_exists git-summary; then
+    cascade_command brew \
+        "brew install coreutils"
+    cascade_command apt-get \
+        "sudo -n apt-get install gawk"
+    if cascade_end; then
+        log_error "Failed to install dependencies for: git-summary"
+    fi
+
+    curl -Ls -o /tmp/git-summary https://raw.githubusercontent.com/MirkoLedda/git-summary/master/git-summary
+    mv /tmp/git-summary "${HOME}/.local/bin/git-summary"
+    chmod +x "${HOME}/.local/bin/git-summary"
+fi
