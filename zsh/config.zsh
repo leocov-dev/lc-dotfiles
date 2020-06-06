@@ -1,17 +1,5 @@
 #!/bin/zsh
 
-export LSCOLORS='exfxcxdxbxegedabagacad'
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-export CLICOLOR=1
-
-lsColorsFile="$HOME/.local/share/lscolors.sh"
-
-if [[ -f $lsColorsFile ]]; then
-    # BETTER COLORS
-    # shellcheck disable=SC1090
-    source "$lsColorsFile"
-fi
-
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 HISTFILE=~/.zsh_history
@@ -61,5 +49,5 @@ zle -N edit-command-line
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey "${terminfo}[kcuu1]" history-substring-search-up
+bindkey "${terminfo}[kcud1]" history-substring-search-down

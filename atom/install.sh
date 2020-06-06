@@ -17,7 +17,7 @@ if ! command_exists "atom"; then
         "sudo -n apt-get install atom"
     if cascade_end; then
         log_error "Failed to install: atom"
-    c
+    fi
 else
     log_debug "Already installed: atom"
 fi
