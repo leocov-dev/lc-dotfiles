@@ -13,8 +13,7 @@ if ! command_exists "atom"; then
     cascade_command curl \
         "wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -" \
         "sudo -n sh -c 'echo \"deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main\" > /etc/apt/sources.list.d/atom.list'" \
-        "sudo -n apt-get update" \
-        "sudo -n apt-get install atom"
+        "sudo -n apt-get -y install atom"
     if cascade_end; then
         log_error "Failed to install: atom"
     fi

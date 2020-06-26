@@ -179,48 +179,48 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
 
-# Base16 Ocean 256 - alacritty color config
-# Chris Kempson (http://chriskempson.com)
+# Base16 OneDark 256 - alacritty color config
+# Lalit Magant (http://github.com/tilal6991)
 colors:
   # Default colors
   primary:
-    background: '0x2b303b'
-    foreground: '0xc0c5ce'
+    background: '0x282c34'
+    foreground: '0xabb2bf'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x2b303b'
-    cursor: '0xc0c5ce'
+    text: '0x282c34'
+    cursor: '0xabb2bf'
 
   # Normal colors
   normal:
-    black:   '0x2b303b'
-    red:     '0xbf616a'
-    green:   '0xa3be8c'
-    yellow:  '0xebcb8b'
-    blue:    '0x8fa1b3'
-    magenta: '0xb48ead'
-    cyan:    '0x96b5b4'
-    white:   '0xc0c5ce'
+    black:   '0x282c34'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xe5c07b'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xabb2bf'
 
   # Bright colors
   bright:
-    black:   '0x65737e'
-    red:     '0xbf616a'
-    green:   '0xa3be8c'
-    yellow:  '0xebcb8b'
-    blue:    '0x8fa1b3'
-    magenta: '0xb48ead'
-    cyan:    '0x96b5b4'
-    white:   '0xeff1f5'
+    black:   '0x545862'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xe5c07b'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xc8ccd4'
 
   indexed_colors:
-    - { index: 16, color: '0xd08770' }
-    - { index: 17, color: '0xab7967' }
-    - { index: 18, color: '0x343d46' }
-    - { index: 19, color: '0x4f5b66' }
-    - { index: 20, color: '0xa7adba' }
-    - { index: 21, color: '0xdfe1e8' }
+    - { index: 16, color: '0xd19a66' }
+    - { index: 17, color: '0xbe5046' }
+    - { index: 18, color: '0x353b45' }
+    - { index: 19, color: '0x3e4451' }
+    - { index: 20, color: '0x565c64' }
+    - { index: 21, color: '0xb6bdca' }
 
 # Visual Bell
 #

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # shellcheck source=./.utils/functions.sh
 source "$DOTFILES/.utils/functions.sh"
 
@@ -9,7 +11,7 @@ if ! command_exists "git"; then
     cascade_command brew \
         "brew install git"
     cascade_command apt-get \
-        "sudo -n apt-get install git-all"
+        "sudo -n apt-get -y install git-all"
     if cascade_end; then
         log_error "Failed to install: git"
     fi
@@ -48,12 +50,14 @@ if ! command_exists git-summary; then
     cascade_command brew \
         "brew install coreutils"
     cascade_command apt-get \
-        "sudo -n apt-get install gawk"
+        "sudo -n apt-get -y install gawk"
     if cascade_end; then
         log_error "Failed to install dependencies for: git-summary"
     fi
 
     curl -Ls -o /tmp/git-summary https://raw.githubusercontent.com/MirkoLedda/git-summary/master/git-summary
+
+    mkdir -p "${HOME}/.local/bin"
     mv /tmp/git-summary "${HOME}/.local/bin/git-summary"
     chmod +x "${HOME}/.local/bin/git-summary"
 fi
