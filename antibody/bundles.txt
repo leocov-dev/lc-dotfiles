@@ -2,7 +2,6 @@
 romkatv/powerlevel10k
 zsh-users/zsh-completions
 chrissicool/zsh-256color
-marzocchi/zsh-notify
 
 # these should be at last!
 zdharma/fast-syntax-highlighting

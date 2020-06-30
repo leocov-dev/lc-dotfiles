@@ -16,9 +16,9 @@ if ! command_exists "jenv"; then
         log_error "Failed to install: jenv"
     fi
 
-    export PATH="$JENV_ROOT/bin:$PATH"
-    eval "$(jenv init -)"
-    jenv enable-plugin export
+#    export PATH="$JENV_ROOT/bin:$PATH"
+#    eval "$(jenv init -)"
+#    jenv enable-plugin export
 else
     log_debug "Already installed: jenv"
 fi
