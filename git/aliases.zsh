@@ -7,7 +7,7 @@ fi
 alias git-summary-src='git-summary -q ~/src'
 alias git-summary-repos='git-summary -q ~/repos'
 
-#alias gl='git pull --prune'
+alias gpl='git pull --prune'
 #alias glg="git log --graph --decorate --oneline --abbrev-commit"
 #alias glga="glg --all"
 alias gp='git push origin HEAD'
@@ -15,7 +15,7 @@ alias gp='git push origin HEAD'
 #alias gd='git diff'
 #alias gc='git commit -s'
 #alias gca='git commit -s -a'
-#alias gco='git checkout'
+alias gx='git checkout'
 #alias gb='git branch -v'
 #alias ga='git add'
 alias ga='git add -A && git status -sb'
