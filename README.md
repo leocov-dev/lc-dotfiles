@@ -3,14 +3,25 @@
 ## Install
 Requires `zsh` shell
 
-Clone this repo to `~/.dotfiles` or if set env var `DOTFILES`
-`git clone git@github.com:leocov-dev/dotfiles.git ~/.dotfiles`
+Clone this repo to `~/.dotfiles`
 
-Run `bin/bootstrap`
+```
+$ git clone git@github.com:leocov-dev/dotfiles.git ~/.dotfiles
+```
+>If you don't want to or can't use `~/.dotfiles` for the repo root
+then you can clone to any location but **MUST** setup your shell to populate
+the environment variable `DOTFILES` with the repo location.
+
+Initialize with:
+```
+$ bin/bootstrap
+```
+
 
 ## Update
-You can always run `bootstrap!` or `bin/bootstrap` again to get the latest.
-Reload your shell with `reload!`
+Pull the lastest changes from the git repo and execute the command `$ bootstrap!`.
+
+Reload your shell with the command `$ reload!`
 
 ## Settings
 Change execution through environment variables
@@ -31,7 +42,10 @@ Create a `~/.dotfiles.env` file and add settings to it, one per line (lines star
     * Example: `DOTFILES_LOAD_REMAINDER_NODE=false`
 
 ## Development
-Run tests with `bin/tests`
+Run tests with the command
+```
+$ bin/tests
+```
 
 ## Notes
 Inspired by: [caarlos0/dotfiles](https://github.com/caarlos0/dotfiles/)
