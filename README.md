@@ -8,9 +8,12 @@ Clone this repo to `~/.dotfiles`
 ```
 $ git clone git@github.com:leocov-dev/dotfiles.git ~/.dotfiles
 ```
+>You may alternatively clone to any location and create a simlink to `~/.dotfiles`.
+>
 >If you don't want to or can't use `~/.dotfiles` for the repo root
-then you can clone to any location but **MUST** setup your shell to populate
-the environment variable `DOTFILES` with the repo location.
+>then you can clone to any location but **MUST** setup your shell to populate
+>the environment variable `DOTFILES` with the repo location.
+
 
 Initialize with:
 ```
