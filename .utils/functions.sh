@@ -68,7 +68,7 @@ must_sudo() {
     fi
 }
 
-load_env_file() {
+load_dotfiles_env_file() {
     local defaultLocation="$HOME/.dotfiles.env"
     local envFile=${1:-$defaultLocation}
 

@@ -42,6 +42,11 @@ file_exists() {
     return
 }
 
+directory_exists() {
+    [[ -d "$1" ]]
+    return
+}
+
 os_type () {
     unameOut="$(uname -s)"
     case "${unameOut}" in

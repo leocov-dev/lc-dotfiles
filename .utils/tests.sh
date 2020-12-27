@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# shellcheck source=./test_functions.sh
-source "$DOTFILES/.utils/test_functions.sh"
 # shellcheck source=./functions.sh
 source "$DOTFILES/.utils/functions.sh"
+# shellcheck source=./test_functions.sh
+source "$DOTFILES/.utils/test_functions.sh"
 
 echo "------------- TEST SUITE ---------------"
 echo

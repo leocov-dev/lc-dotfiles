@@ -3,8 +3,8 @@
 # shellcheck source=../.utils/functions
 source "${DOTFILES}/.utils/functions.sh"
 
-# alias reload!='exec "$SHELL" -l'
-alias reload!='source ~/.zshrc'
+ alias reload!='exec "$SHELL" -l'
+#alias reload!='source ~/.zshrc'
 alias bootstrap!='$DOTFILES/bin/bootstrap'
 alias .zshrc='$EDITOR ~/.zshrc'
 alias .dotfiles='cd $DOTFILES'

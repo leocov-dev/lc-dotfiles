@@ -5,7 +5,7 @@ export DOTFILES=${DOTFILES:-"$HOME/.dotfiles"}
 source "${DOTFILES}/.utils/functions.sh"
 
 # load the .env file if found
-load_env_file
+load_dotfiles_env_file
 
 # your default editor
 export EDITOR='micro'
@@ -80,7 +80,7 @@ unset zsh_files
 
 # prompt_for_update  # TODO, is a bit slow maybe async?
 
-# use .localrc for SUPER SECRET CRAP that you don't
+# use .localrc for SUPER SECRET STUFF that you don't
 # want in your public, versioned repo.
 # shellcheck disable=SC1090
 [ -f "${HOME}/.localrc" ] && source "${HOME}/.localrc"
