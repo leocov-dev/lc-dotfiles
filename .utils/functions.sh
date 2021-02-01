@@ -134,7 +134,7 @@ self_update() {
         if git_is_behind; then
             if inside_git_repo; then
                 log_info "Updating Dotfiles Repo..."
-                git checkout -q master
+                git checkout -q main
                 git remote update -p > /dev/null
                 if ! git pull -q --ff-only; then
                     log_warn "Failed to merge, you might have local changes"

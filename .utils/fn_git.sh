@@ -34,15 +34,15 @@ git_setup_user() {
 
 git_is_behind() {
     # shellcheck disable=SC2034
-    local me=$(git rev-parse "master@{upstream}")
+    local me=$(git rev-parse "main@{upstream}")
     # shellcheck disable=SC2207
-    local parseMe=$(git ls-remote origin -h "refs/heads/master")
-    local master=$(trim "${parseMe%"refs/heads/master"}")
+    local parseMe=$(git ls-remote origin -h "refs/heads/main")
+    local main=$(trim "${parseMe%"refs/heads/main"}")
 
-    log_debug "$me ? $master"
+    log_debug "$me ? $main"
 
     # shellcheck disable=SC2128
-    [[ $me != "$master" ]]
+    [[ $me != "$main" ]]
     return
 }
 
@@ -50,7 +50,7 @@ git_pull() {
     if [[ -d "$1" ]]; then
         pushd "$1"  > /dev/null || log_fatal "Failed to cd into $1"
         if git_is_behind; then
-            git checkout -q master
+            git checkout -q main
             git remote update -p > /dev/null
             if ! git pull -q --ff-only; then
                 log_warn "Failed to merge, you might have local changes"
