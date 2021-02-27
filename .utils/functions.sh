@@ -131,7 +131,7 @@ self_update() {
     if [[ -d "$DOTFILES" ]]; then
         log_debug "Attempt self update..."
         pushd "$DOTFILES" > /dev/null || log_fatal "Failed to cd into $DOTFILES"
-        if git_is_behind; then
+        if git_is_behind "main"; then
             if inside_git_repo; then
                 log_info "Updating Dotfiles Repo..."
                 git checkout -q main
@@ -152,7 +152,7 @@ self_update() {
 prompt_for_update() {
     if [[ -d "$DOTFILES" &&  ${DOTFILES_PROMPT_FOR_UPDATE:-"false"} == "true" ]]; then
         pushd "$DOTFILES" > /dev/null || log_fatal "Failed to cd into $DOTFILES"
-        if git_is_behind; then
+        if git_is_behind "main"; then
             echo -e "${c_purple}Dotfiles has an update available!${c_reset}"
             prompt "Update now? (y/n)"
             read -r response

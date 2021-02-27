@@ -1,9 +1,9 @@
 # PLUGINS
 romkatv/powerlevel10k
 zsh-users/zsh-completions
-chrissicool/zsh-256color
+# chrissicool/zsh-256color
 
 # these should be at last!
-zdharma/fast-syntax-highlighting
+# zdharma/fast-syntax-highlighting
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
