@@ -5,7 +5,7 @@ source "${DOTFILES}/.utils/functions.sh"
 
  alias reload!='exec "$SHELL" -l'
 #alias reload!='source ~/.zshrc'
-alias bootstrap!='$DOTFILES/bin/bootstrap'
+alias bootstrap!='$DOTFILES/.bin/bootstrap'
 alias .zshrc='$EDITOR ~/.zshrc'
 alias .dotfiles='cd $DOTFILES'
 alias .dotfiles.env='$EDITOR $DOTFILES'

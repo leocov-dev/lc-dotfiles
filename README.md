@@ -17,7 +17,7 @@ $ git clone git@github.com:leocov-dev/dotfiles.git ~/.dotfiles
 
 Initialize with:
 ```
-$ bin/bootstrap
+$ .bin/bootstrap
 ```
 
 
@@ -47,7 +47,7 @@ Create a `~/.dotfiles.env` file and add settings to it, one per line (lines star
 ## Development
 Run tests with the command
 ```
-$ bin/tests
+$ .bin/tests
 ```
 
 ## Notes

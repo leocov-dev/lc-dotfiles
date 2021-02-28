@@ -20,7 +20,7 @@ Bootstrapping . . .${c_reset}
 
 
 self_update
-load_dotfiles_env_file
+load_dotfiles_env_filegs
 force_sudo
 update_system
 do_all_install

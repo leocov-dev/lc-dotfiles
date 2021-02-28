@@ -22,6 +22,8 @@ log_debug "Load path.zsh files:"
 # shellcheck disable=SC2154
 for file in ${(M)zsh_files:#*/path.zsh}; do
     dirName=$(basename "$(dirname "$file")")
+    loadDir="DOTFILES_${dirName:u}"
+    [[ ${(P)loadDir:-false} == true ]] || continue
     loadPath="DOTFILES_LOAD_PATH_${dirName:u}"
     [[ ${(P)loadPath:-true} == true ]] || continue
 
@@ -45,6 +47,8 @@ fi
 log_debug "Load *.zsh files:"
 for file in ${${zsh_files:#*/path.zsh}:#*/completion.zsh}; do
     dirName=$(basename "$(dirname "$file")")
+    loadDir="DOTFILES_${dirName:u}"
+    [[ ${(P)loadDir:-false} == true ]] || continue
     loadRemainder="DOTFILES_LOAD_REMAINDER_${dirName:u}"
     [[ ${(P)loadRemainder:-true} == true ]] || continue
 
@@ -68,6 +72,8 @@ log_debug "Load completion.zsh files:"
 # shellcheck disable=SC2154
 for file in ${(M)zsh_files:#*/completion.zsh}; do
     dirName=$(basename "$(dirname "$file")")
+    loadDir="DOTFILES_${dirName:u}"
+    [[ ${(P)loadDir:-false} == true ]] || continue
     loadCompletion="DOTFILES_LOAD_COMPLETION_${dirName:u}"
     [[ ${(P)loadCompletion:-true} == true ]] || continue
 

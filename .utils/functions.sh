@@ -68,12 +68,32 @@ must_sudo() {
     fi
 }
 
+init_dotfiles_env_file() {
+    local dotfile=$1
+    local dirs=("$DOTFILES"/*/)
+
+    log_debug "$(pp_array "dirs")"
+
+    echo "# Configure dotfile script actions here" >> "$dotfile"
+
+    # shellcheck disable=SC2068
+    for dir in ${dirs[@]}; do
+        task="$(basename "${dir}")"
+        dot="DOTFILES_${task^^}"
+        echo "${dot}=false" >> "$dotfile"
+    done
+}
+
 load_dotfiles_env_file() {
     local defaultLocation="$HOME/.dotfiles.env"
     local envFile=${1:-$defaultLocation}
 
     if ! file_exists "$envFile"; then
-        log_debug "Failed to find: \"$envFile\""
+        log_debug "Init new: \"$envFile\""
+        init_dotfiles_env_file "$envFile"
+        log_warn "Created new: \"$envFile\""
+        log_warn "Edit with cmd: ${EDITOR} ${envFile}"
+        log_warn "Then run script again"
         return
     fi
 
@@ -109,7 +129,8 @@ do_all_install() {
     # shellcheck disable=SC2068
     for file in ${install_files[@]}; do
         task="$(basename "$(dirname "${file}")")"
-
+        loadDir="DOTFILES_${task^^}"
+        [[ ${!loadDir:-false} == true ]] || continue
         envVar="DOTFILES_INSTALL_${task^^}"
         if [[ "${!envVar:-true}" == false ]]; then
             log_debug "Skipping install: $task"
