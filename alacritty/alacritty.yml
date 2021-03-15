@@ -223,13 +223,13 @@ colors:
     - { index: 20, color: '0x565c64' }
     - { index: 21, color: '0xb6bdca' }
 
-# Visual Bell
+# Bell
 #
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
+# The bell is rung every time the BEL control character is received.
+bell:
+# Visual Bell Animation
+#
+# Animation effect for flashing the screen when the visual bell is rung.
 #
 # Values for `animation`:
 #   - Ease
@@ -242,12 +242,27 @@ colors:
 #   - EaseOutExpo
 #   - EaseOutCirc
 #   - Linear
+animation: EaseOutExpo
+
+# Duration of the visual bell flash in milliseconds. A `duration` of `0` will
+# disable the visual bell animation.
+duration: 300
+
+# Visual bell animation color.
+color: '#ffffff'
+
+# Bell Command
 #
-# Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
-  animation: EaseOutExpo
-  duration: 50
-  color: '0xffffff'
+# This program is executed whenever the bell is rung.
+#
+# When set to `command: None`, no command will be executed.
+#
+# Example:
+#   command:
+#     program: notify-send
+#     args: ["Hello, World!"]
+#
+#command: None
 
 # Background opacity
 #
