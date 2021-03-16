@@ -21,7 +21,7 @@ else
 fi
 
 if ! directory_exists "${HOME}/.tmux/plugins/tpm"; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
 if ! file_exists "${HOME}/.tmux.conf"; then

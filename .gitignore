@@ -7,3 +7,5 @@ log.txt
 micro/config/
 !micro/config/settings.json
 !micro/config/bindings.json
+
+antibody/package-lock.json
