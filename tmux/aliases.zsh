@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-alias tmux-cheat-sheet='open https://tmuxcheatsheet.com'
+alias tmux-help='open https://tmuxcheatsheet.com'
+alias tn='tmux new'
+alias ta='tmux attach'

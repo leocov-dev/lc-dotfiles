@@ -36,7 +36,7 @@ install_nerd_font() {
 
     cascade_command brew \
         "brew tap | grep -q 'homebrew/cask-fonts' || brew tap homebrew/cask-fonts" \
-        "brew cask install font-${nerdFontName,,}-nerd-font"
+        "brew install --cask font-${nerdFontName,,}-nerd-font"
     cascade_command . \
         "manual_nerd_font_install $nerdFontName"
     if cascade_end; then

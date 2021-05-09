@@ -20,6 +20,10 @@ else
     log_debug "Already installed: tmux"
 fi
 
+if ! directory_exists "${HOME}/.tmux/plugins/tpm"; then
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
+
 if ! file_exists "${HOME}/.tmux.conf"; then
     ln -s "${DOTFILES}/tmux/tmux.conf" "${HOME}/.tmux.conf"
 fi

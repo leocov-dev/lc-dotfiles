@@ -9,7 +9,7 @@ must_sudo
 
 if ! command_exists alacritty; then
     cascade_command brew \
-        "brew cask install alacritty"
+        "brew install --cask alacritty"
     cascade_command apt-get \
         "sudo -n add-apt-repository ppa:mmstick76/alacritty" \
         "sudo -n apt-get -y install alacritty"
