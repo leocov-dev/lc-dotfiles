@@ -90,3 +90,6 @@ unset zsh_files
 # want in your public, versioned repo.
 # shellcheck disable=SC1090
 [ -f "${HOME}/.localrc" ] && source "${HOME}/.localrc"
+
+
+clear

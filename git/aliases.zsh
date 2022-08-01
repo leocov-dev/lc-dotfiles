@@ -7,7 +7,7 @@ fi
 alias git-summary-src='git-summary -q ~/src'
 alias git-summary-repos='git-summary -q ~/repos'
 
-alias gpl='git pull --prune'
+alias gpl='git pull --prune --recurse-submodules'
 #alias glg="git log --graph --decorate --oneline --abbrev-commit"
 #alias glga="glg --all"
 alias gp='git push origin HEAD'
@@ -24,7 +24,18 @@ alias gc='git commit -m'
 alias gs='git status -sb'
 #alias gpr='gp && git pr'
 #alias glnext='git log --oneline $(git describe --tags --abbrev=0 @^)..@'
-alias gsquash='ga && gc "s" && git rebase -i fusion && git push -f'
+
+function alias_git_squash() {
+	local branch=$1
+	if [[ -z ${branch} ]]; then
+		echo "Must specify branch to rebase against [fusion, shadow, master]"
+		return 1
+	else
+	    ga && gc "s" && git rebase -i "${branch}" && git push -f
+	fi    
+}
+
+alias gsquash='alias_git_squash'
 
 #if command -v svu >/dev/null 2>&1; then
 #	alias gtpatch='echo `svu p`; git tag `svu p`'
