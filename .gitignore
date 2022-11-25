@@ -10,3 +10,7 @@ micro/config/
 !micro/config/bindings.json
 
 antibody/package-lock.json
+
+bin/
+
+dist/

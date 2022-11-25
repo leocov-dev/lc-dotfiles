@@ -2,13 +2,12 @@ package main
 
 import (
 	"fmt"
-	"log"
-
 	"github.com/jroimartin/gocui"
+	"log"
 )
 
 func main() {
-	g, err := gocui.NewGui(gocui.OutputNormal)
+	g, err := gocui.NewGui(gocui.Output256)
 	if err != nil {
 		log.Panicln(err)
 	}
@@ -16,7 +15,8 @@ func main() {
 
 	g.SetManagerFunc(layout)
 
-	if err := g.SetKeybinding("", gocui.KeyCtrlC, gocui.ModNone, quit); err != nil {
+	err = g.SetKeybinding("", gocui.KeyCtrlC, gocui.ModNone, quit)
+	if err != nil {
 		log.Panicln(err)
 	}
 
@@ -27,7 +27,7 @@ func main() {
 
 func layout(g *gocui.Gui) error {
 	maxX, maxY := g.Size()
-	if v, err := g.SetView("hello", maxX/2-7, maxY/2, maxX/2+7, maxY/2+2); err != nil {
+	if v, err := g.SetView("hello", 0, 0, maxX-1, maxY-1); err != nil {
 		if err != gocui.ErrUnknownView {
 			return err
 		}
@@ -37,5 +37,11 @@ func layout(g *gocui.Gui) error {
 }
 
 func quit(g *gocui.Gui, v *gocui.View) error {
+	v, err := g.View("hello")
+	if err != nil {
+		log.Panicln(err)
+	}
+	v.Title = "poop"
+
 	return gocui.ErrQuit
 }
