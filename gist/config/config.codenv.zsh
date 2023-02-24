@@ -9,6 +9,8 @@ if [[ -d "$PYENV_ROOT" ]]; then
     eval "$(pyenv init -)"
 fi
 
+alias pyenv86="arch -x86_64 pyenv"
+
 # ------------------------------------------------------------------------------
 # NODE
 export NODENV_ROOT="$HOME/.nodenv"

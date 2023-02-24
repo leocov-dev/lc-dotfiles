@@ -24,3 +24,5 @@ export HOMEBREW_NO_ENV_HINTS=true
 # ------------------------------------------------------------------------------
 
 source "${HOME}/.local/shell/config.env.zsh"
+
+export PATH="/Applications/ARM/bin:$PATH"

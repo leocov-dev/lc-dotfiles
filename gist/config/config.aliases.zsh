@@ -16,6 +16,10 @@ alias ll="ls -lhA"
 alias .zshrc='$EDITOR ~/.zshrc'
 
 # ------------------------------------------------------------------------------
+# brew
+alias brew86="arch -x86_64 /usr/local/bin/brew"
+
+# ------------------------------------------------------------------------------
 # codenv helpers
 alias goenv-update='cd ${HOME}/.goenv && git pull'
 alias pyenv-update='cd ${HOME}/.pyenv && git pull'
