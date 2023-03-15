@@ -29,7 +29,7 @@ alias nodenv-update='nodenv update-version-defs'
 # git
 alias gpl='git pull --prune --recurse-submodules'
 alias ga='git add -A && git status -sb'
-alias gc='git commit -m'
+alias gc='gpg-scan && git commit -m'
 alias gs='git status -sb'
 
 # ------------------------------------------------------------------------------
@@ -75,3 +75,10 @@ gen_token() {
   python -c "import secrets; print(secrets.token_urlsafe(${1:-32}))"
 }
 alias gen-token='gen_token'
+
+gpg_scan() {
+    gpg-connect-agent "scd serialno" "learn --force" /bye >/dev/null
+    gpg -K >/dev/null
+}
+alias gpg-scan="gpg_scan"
+alias gpgscan="gpg_scan"
