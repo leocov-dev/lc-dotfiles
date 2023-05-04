@@ -1,2 +1,1 @@
-# Dotfile Management And Bootstrap
-
+# Dotfile Bootstrap

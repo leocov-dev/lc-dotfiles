@@ -15,5 +15,7 @@ bin/
 
 dist/
 
+id_*
+*.pub
 *.crt
 *.key
