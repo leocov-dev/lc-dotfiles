@@ -2,10 +2,7 @@
 
 # ------------------------------------------------------------------------------
 # Shell
-reload_shell() {
-    exec "${SHELL}" -l
-}
-alias reload!='reload_shell && clear'
+alias reload!='lc_reload_shell'
 alias r!="reload!"
 
 alias cl="clear"
@@ -44,66 +41,18 @@ alias lzd="lazydocker"
 
 # ------------------------------------------------------------------------------
 # aws
-ecr_login() {
-    aws ecr get-login-password \
-        --region ${AWS_REGION:-"us-east-2"} \
-        --profile ${AWS_PROFILE:-"default"}|
-        docker login \
-            -u AWS \
-            --password-stdin "https://${ECR}"
-}
-
-ecr_create_repo() {
-    local __repo_name=${1}
-
-    if [[ -z $__repo_name ]]; then
-        echo "Error: must supply repo name"
-        return 1
-    fi
-
-    aws ecr create-repository \
-        --repository-name ${AWS_REPO:-"homelab"}/${__repo_name} \
-        --profile ${AWS_PROFILE:-"default"}
-}
-alias ecr-login='ecr_login'
-alias ecr-create-repo='ecr_create_repo'
+alias ecr-login='lc_ecr_login'
+alias ecr-create-repo='lc_ecr_create_repo'
 
 # ------------------------------------------------------------------------------
 # helpers
-gen_token() {
-    python -c "import secrets; print(secrets.token_urlsafe(${1:-32}))"
-}
-alias gen-token='gen_token'
-alias token='gen_token'
+alias gen-token='lc_gen_token'
+alias token='gen-token'
 
-gpg_scan() {
-    gpg-connect-agent "scd serialno" "learn --force" /bye >/dev/null
-    gpg -K >/dev/null
-}
-alias gpg-scan="gpg_scan"
-alias gpgscan="gpg_scan"
+alias gpg-scan="lc_gpg_scan"
+alias gpgscan="gpg-scan"
 
 # ------------------------------------------------------------------------------
 # python helpers
 
-fuzzy_source_venv() {
-    # find the first `venv` like named directory in the current dir and activate it
-
-    local _list=()
-    local _current_dir
-    _current_dir="$(pwd)"
-
-    IFS=$'\n' read -d '' -r -a _list <<<"$(find "$_current_dir" -maxdepth 1 -type d | grep venv)"
-
-    if [[ ${#_list[@]} -lt 1 ]]; then
-        echo "Failed to activate venv, none found in: \"$_current_dir\"" >&2
-        exit 1
-    else
-        echo "==> activating venv: \"${_list[0]}\""
-        echo
-        # shellcheck disable=SC1090
-        source "${_list[0]}/bin/activate"
-    fi
-}
-
-alias venvpython='fuzzy_source_venv && python'
+alias venvpython='lc_venv_python'

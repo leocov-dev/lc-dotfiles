@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+local __repo_name=${1}
+
+if [[ -z $__repo_name ]]; then
+  echo "Error: must supply repo name"
+  return 1
+fi
+
+aws ecr create-repository \
+  --repository-name ${AWS_REPO:-"homelab"}/${__repo_name} \
+  --profile ${AWS_PROFILE:-"default"}

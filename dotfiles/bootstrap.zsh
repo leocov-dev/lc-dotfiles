@@ -2,28 +2,24 @@
 
 set -e
 
-__dir=${${(%):-%x}:A:h}
+_current_dir=${${(%):-%x}:A:h}
 
 # ------------------------------------------------------------------------------
 # platform specific dependencies
-source "$__dir/install-helpers/install-`uname`.zsh"
+source "${_current_dir}/install-helpers/install-`uname`.zsh"
 
 # ------------------------------------------------------------------------------
 # codenv utilities
-source "$__dir/install-helpers/install-codenv-utils.zsh"
-
-
-#cp -f "${__dir}/dotfiles/.zshrc" "${HOME}/.zshrc"
-#cp -f "${__dir}/dotfiles/.zshenv" "${HOME}/.zshenv"
-
-__shell_dir="${HOME}/.local/shell"
+source "${_current_dir}/install-helpers/install-codenv-utils.zsh"
 
 # ------------------------------------------------------------------------------
 # config files
+__shell_dir="${HOME}/.local/shell"
+
 echo "Copy Configuration Files"
-mkdir -p "${__shell_dir}"
-rm "${__shell_dir}/*.zsh" || :
-cp -fr "${__dir}/shell/." "${__shell_dir}"
+mkdir -p ${__shell_dir}
+rm -r ${__shell_dir}/* || :
+cp -fr ${_current_dir}/shell/. ${__shell_dir}
 
 
 

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+aws ecr get-login-password \
+  --region ${AWS_REGION:-"us-east-2"} \
+  --profile ${AWS_PROFILE:-"default"} |
+  docker login \
+    -u AWS \
+    --password-stdin "https://${ECR}"

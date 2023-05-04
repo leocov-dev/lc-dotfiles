@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+# find the first `venv` like named directory in the current dir and activate it
+
+local _current_dir
+_current_dir="$(pwd)"
+
+local _find
+_find=$(find "$_current_dir" -maxdepth 1 -type d | grep venv)
+
+local _list
+_list=("${(@f)_find}")
+
+# zsh arrays begin at 1
+local _target_venv=${_list[1]}
+
+if [[  -z ${_target_venv} ]]; then
+    echo "Failed to activate venv, none found in: \"$_current_dir\"" >&2
+    return 1
+else
+    echo "==> activating venv: \"${_target_venv}\""
+    echo
+    # shellcheck disable=SC1090
+    source "${_target_venv}/bin/activate"
+    return 0
+fi

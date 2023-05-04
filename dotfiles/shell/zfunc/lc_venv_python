@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+autoload -Uz lc_fuzzy_source_venv
+
+lc_venv_python() {
+    lc_fuzzy_source_venv && python "${@}" && deactivate
+}
+
+lc_venv_python "${@}"

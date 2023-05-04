@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+gpg-connect-agent "scd serialno" "learn --force" /bye >/dev/null
+gpg -K >/dev/null

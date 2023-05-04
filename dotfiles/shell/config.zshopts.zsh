@@ -43,3 +43,13 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt RM_STAR_SILENT
 
 setopt AUTOCD
+
+# ------------------------------------------------------------------------------
+# load custom funcs
+func_dir="${${(%):-%x}:A:h}/zfunc"
+
+fpath=( "${func_dir}" "${fpath[@]}" )
+
+for file in ${func_dir}/**/*(.); do
+    autoload -Uz $file
+done
