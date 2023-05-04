@@ -2,11 +2,10 @@
 
 # ------------------------------------------------------------------------------
 # Shell
-function reload_shell() {
+reload_shell() {
   exec "${SHELL}" -l
-  clear
 }
-alias reload!='reload_shell'
+alias reload!='reload_shell && clear'
 alias r!="reload!"
 
 alias cl="clear"
@@ -75,6 +74,7 @@ gen_token() {
   python -c "import secrets; print(secrets.token_urlsafe(${1:-32}))"
 }
 alias gen-token='gen_token'
+alias token='gen_token'
 
 gpg_scan() {
     gpg-connect-agent "scd serialno" "learn --force" /bye >/dev/null
@@ -82,3 +82,28 @@ gpg_scan() {
 }
 alias gpg-scan="gpg_scan"
 alias gpgscan="gpg_scan"
+
+# ------------------------------------------------------------------------------
+# python helpers
+
+fuzzy_source_venv() {
+  # find the first `venv` like named directory in the current dir and activate it
+
+  local _list=()
+  local _current_dir
+  _current_dir="$(pwd)"
+
+  IFS=$'\n' read -d '' -r -a _list <<< "$(find "$_current_dir" -maxdepth 1 -type d | grep venv)"
+
+  if [[ ${#_list[@]} -lt 1 ]]; then
+  echo "Failed to activate venv, none found in: \"$_current_dir\"" >&2
+  exit 1
+else
+  echo "==> activating venv: \"${_list[0]}\""
+  echo
+  # shellcheck disable=SC1090
+  source "${_list[0]}/bin/activate"
+fi
+}
+
+alias venvpython='fuzzy_source_venv && python'

@@ -22,7 +22,14 @@ export PATH="${HOMEBREW_ROOT}/opt/coreutils/libexec/gnubin:${PATH}"
 export HOMEBREW_NO_ENV_HINTS=true
 
 # ------------------------------------------------------------------------------
+# gpg
+export GPG_TTY=$(tty)
 
-source "${HOME}/.local/shell/config.env.zsh"
+# ------------------------------------------------------------------------------
+#export ECR=142856920121.dkr.ecr.us-east-2.amazonaws.com
+export ECR=registry.svc.covfam.com
+export HOMELAB_ECR="${ECR}/homelab"
 
+# ------------------------------------------------------------------------------
+# arm compiler tools
 export PATH="/Applications/ARM/bin:$PATH"
