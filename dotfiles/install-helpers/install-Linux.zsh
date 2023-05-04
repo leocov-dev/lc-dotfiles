@@ -12,4 +12,4 @@ for package in ${__apt[@]}; do
     sudo apt install -y "$package"
 done
 
-curl -sS https://starship.rs/install.sh | sh -s -- -bin-dir "${HOME}/.local/bin"
+curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir "${HOME}/.local/bin"
