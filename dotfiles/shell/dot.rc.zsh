@@ -29,3 +29,9 @@ source "${HOME}/.local/shell/config.aliases.zsh"
 # code env (pyenv, goenv, nodenv, etc.)
 # shellcheck source=./config.codenv.zsh
 source "${HOME}/.local/shell/config.codenv.zsh"
+
+
+
+# ------------------------------------------------------------------------------
+# starship shell prompt
+eval "$(starship init zsh)"

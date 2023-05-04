@@ -20,7 +20,7 @@ __brew_casks=(
 
 # ------------------------------------------------------------------------------
 # setup homebrew
-if [[ ! $(command -v brew) ]]; then
+if ! command -v brew; then
     echo "Installing Homebrew"
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi

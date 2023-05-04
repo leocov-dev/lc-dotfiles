@@ -22,5 +22,16 @@ rm -r ${__shell_dir}/* || :
 cp -fr ${_current_dir}/shell/. ${__shell_dir}
 
 
+_zshrc_line='source "${HOME}/.local/shell/dot.rc.zsh"'
+if ! grep -Fqx ${_zshrc_line} "${HOME}/.zshrc"; then
+    echo "Update .zshrc"
+    echo "\n${_zshrc_line}" >> "${HOME}/.zshrc"
+fi
+
+_zshenv_line='source "${HOME}/.local/shell/dot.env.zsh"'
+if ! grep -Fqx ${_zshenv_line} "${HOME}/.zshenv"; then
+    echo "Update .zshenv"
+    echo "\n${_zshenv_line}" >> "${HOME}/.zshenv"
+fi
 
 echo "----- DONE -----"
