@@ -42,4 +42,4 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # don't ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
 
-setopt  AUTOCD
+setopt AUTOCD

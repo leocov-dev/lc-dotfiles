@@ -9,11 +9,11 @@ export PATH="${PATH}:${HOME}/.local/bin"
 HOMEBREW_ROOT_AM1="/opt/homebrew"
 HOMEBREW_ROOT_X86="/usr/local"
 if [[ -f "${HOMEBREW_ROOT_AM1}/bin/brew" ]]; then
-  export HOMEBREW_ROOT="${HOMEBREW_ROOT_AM1}"
+    export HOMEBREW_ROOT="${HOMEBREW_ROOT_AM1}"
 elif [[ -f "${HOMEBREW_ROOT_X86}/bin/brew" ]]; then
-  export HOMEBREW_ROOT="${HOMEBREW_ROOT_X86}"
+    export HOMEBREW_ROOT="${HOMEBREW_ROOT_X86}"
 else
-  echo "Can't find homebrew binary"
+    echo "Can't find homebrew binary"
 fi
 
 export PATH="${HOMEBREW_ROOT}/bin:$PATH"
@@ -24,11 +24,6 @@ export HOMEBREW_NO_ENV_HINTS=true
 # ------------------------------------------------------------------------------
 # gpg
 export GPG_TTY=$(tty)
-
-# ------------------------------------------------------------------------------
-#export ECR=142856920121.dkr.ecr.us-east-2.amazonaws.com
-export ECR=registry.svc.covfam.com
-export HOMELAB_ECR="${ECR}/homelab"
 
 # ------------------------------------------------------------------------------
 # arm compiler tools
